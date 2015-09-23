@@ -3,12 +3,10 @@ alexleventer/distelli-slash:
     - '**'
 
   PreRelease:
-    - sudo apt-get -y update
-    - sudo apt-get -y install nodejs
-    - sudo apt-get -y install npm
-    - sudo npm cache clean
-    - sudo npm config set registry https://registry.npmjs.org/
-    - sudo npm install
+    - 'set +e;[ -f /etc/profile ] && source /etc/profile; set -e'
+    - 'nvm install 4.1'
+    - 'npm install'
+    - 'npm test'
 
   PreInstall:
     - sudo apt-get -y update
