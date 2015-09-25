@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/', function(req, res, callback){
   var query = req.body.text;
-  var username = req.body.user_name;
+  var username = '"' + req.body.user_name + '"';
   var slacktoken = req.body.token;
   var slackteam_id = req.body.team_id;
   processQuery(slacktoken, slackteam_id, query, username, function(returnData){
