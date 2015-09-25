@@ -26,7 +26,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
   //List apps
     if(query == "list apps"){
       request('https://api.distelli.com/' + secrets.team.username + '/apps?apiToken='
-        + secrets.users['"' + username + '"'].apiToken + '&max_results=50', function (error, response, body) {
+        + secrets.users[username] + '&max_results=50', function (error, response, body) {
           if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
