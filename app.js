@@ -311,15 +311,15 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
                 var desc = contents.releases[i].description;
                 returnData.push("<" + contents.releases[i].html_url + "|" + contents.releases[i].release_version + ": " + desc  + " (" + tags + ")" + ">");
               }
-              else if(tags == null){
+              else{
                 var desc = contents.releases[i].description;
                 returnData.push("<" + contents.releases[i].html_url + "|" + contents.releases[i].release_version + ": " + desc + ">");
               }
-              else{
-                returnData = "We couldn't find app " + appName + ", " + username + "!";
-                callback(returnData);
-              }
             }
+          }
+          else{
+            returnData = "We couldn't find app " + appName + ", " + username + "!";
+            callback(returnData);
           }
         })
       }
