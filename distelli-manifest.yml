@@ -1,4 +1,4 @@
-alexleventer/distelli-slash:
+distelli/distelli-slash:
   PkgInclude:
     - '**'
 
