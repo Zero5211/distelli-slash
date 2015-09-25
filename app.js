@@ -306,9 +306,8 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i = 0; i < contents.releases.length; i++){
-              var tags = contents.releases[i].tags;
               var desc = contents.releases[i].description;
-              returnData.push("<" + contents.releases[i].html_url + "|" + contents.releases[i].release_version + ": " + desc  + " (" + tags + ")" + ">");
+              returnData.push("<" + contents.releases[i].html_url + "|" + contents.releases[i].release_version + ": " + desc  + ">");
             }
           }
           else{
