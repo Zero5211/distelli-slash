@@ -26,19 +26,18 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
   //List apps
     if(query == "list apps"){
       request('https://api.distelli.com/' + secrets.team.username + '/apps?apiToken='
-        + secrets.users['"' + username + '"'] + '&max_results=50', function (error, response, body) {
-          console.log(error);
-          if(!error && response.statusCode == 200) {
+        + secrets.users["al"] + '&max_results=50', function (error, response, body) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
-            for(var i =0; i < contents.apps.length; i++){
+            for(var i = 0; i < contents.apps.length; i++){
               returnData.push("<" + contents.apps[i].html_url + "|" + contents.apps[i].name + ">");
             }
             returnData = "Here are your apps " + username + ":\n" + returnData.join("\n");
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " + username + "!";
             callback(returnData);
           }
         })
@@ -50,7 +49,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var marker = queryArray[3];
       request('https://api.distelli.com/' + secrets.team.username + '/apps?apiToken='
         + secrets.users[username] + '&marker=' + marker + '&max_results=50', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.apps.length; i++){
@@ -60,7 +59,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, I didn't recognize that marker " + " " + username + "!";
+            returnData = "Uh-oh, I didn't recognize that marker " + username + "!";
             callback(returnData);
           }
         })
@@ -70,7 +69,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
     else if(query == "list builds"){
        request('https://api.distelli.com/' + secrets.team.username + '/builds?apiToken='
         + secrets.users[username] + '&max_results=50&order=desc', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.builds.length; i++){
@@ -81,7 +80,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " + username + "!";
             callback(returnData);
           }
         })
@@ -93,7 +92,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var marker = queryArray[3];
       request('https://api.distelli.com/' + secrets.team.username + '/builds?apiToken='
         + secrets.users[username] + '&marker=' + marker + '&max_results=50', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.servers.length; i++){
@@ -104,7 +103,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, I didn't recognize that marker " + " " + username + "!";
+            returnData = "Uh-oh, I didn't recognize that marker " + username + "!";
             callback(returnData);
           }
         })
@@ -114,7 +113,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
     else if(query == "list servers"){
       request('https://api.distelli.com/' + secrets.team.username + '/servers?apiToken='
         + secrets.users[username] + '&max_results=50', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.servers.length; i++){
@@ -124,7 +123,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " + username + "!";
             callback(returnData);
           }
         })
@@ -136,7 +135,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var marker = queryArray[3];
       request('https://api.distelli.com/' + secrets.team.username + '/servers?apiToken='
         + secrets.users[username] + '&marker=' + marker + '&max_results=25', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.servers.length; i++){
@@ -146,7 +145,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, I didn't recognize that marker " + " " + username + "!";
+            returnData = "Uh-oh, I didn't recognize that marker " + username + "!";
             callback(returnData);
           }
         })
@@ -156,7 +155,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
     else if(query == "list envs"){
        request('https://api.distelli.com/' + secrets.team.username + '/envs?apiToken='
         + secrets.users[username] + '&max_results=25', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.envs.length; i++){
@@ -166,7 +165,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " + username + "!";
             callback(returnData);
           }
         })
@@ -178,7 +177,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var appName = queryArray[4];
        request('https://api.distelli.com/' + secrets.team.username + '/apps/' + appName + '/envs?apiToken='
         + secrets.users[username] + '&max_results=25', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.envs.length; i++){
@@ -188,7 +187,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " +username + "!";
             callback(returnData);
           }
         })
@@ -200,7 +199,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var marker = queryArray[3];
       request('https://api.distelli.com/' + secrets.team.username + '/envs?apiToken='
         + secrets.users[username] + '&marker=' + marker + '&max_results=25', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.envs.length; i++){
@@ -210,7 +209,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " + username + "!";
             callback(returnData);
           }
         })
@@ -222,7 +221,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var envName = queryArray[4];
        request('https://api.distelli.com/' + secrets.team.username + '/envs/' + envName + '/servers?apiToken='
         + secrets.users[username] + '&max_results=25', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i =0; i < contents.servers.length; i++){
@@ -232,7 +231,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " + username + "!";
             callback(returnData);
           }
         })
@@ -244,13 +243,13 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var appName = queryArray[2];
        request.put('https://api.distelli.com/' + secrets.team.username + '/apps/' + appName + '?apiToken='
         + secrets.users[username], function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
-            returnData = "App *" + appName + "* has been created"  + " " + username + " :thumbsup:";
+            returnData = "App *" + appName + "* has been created "  + username + " :thumbsup:";
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " + username + "!";
             callback(returnData);
           }
         })
@@ -264,13 +263,13 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
 
       request('https://api.distelli.com/' + secrets.team.username + '/apps/'+ appName + '/envs/' + envName + '?apiToken='
         + secrets.users[username], function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
-            returnData = "Env *" + envName + "* has been created" + " " + username + "  :thumbsup:";
+            returnData = "Env *" + envName + "* has been created " + username + "  :thumbsup:";
             callback(returnData);
           }
           else{
-            returnData = "Uh-oh, looks like something went wrong " + " " + username + "!";
+            returnData = "Uh-oh, looks like something went wrong " + username + "!";
             callback(returnData);
           }
         })
@@ -284,7 +283,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
 
        request.put('https://api.distelli.com/' + secrets.team.username + '/envs/' + envName + '/restart?apiToken='
         + secrets.users[username], function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             returnData = "Env *" + envName + "* has been restarted " + username;
             callback(returnData);
@@ -303,7 +302,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var appName = queryArray[4];
        request('https://api.distelli.com/' + secrets.team.username + '/apps/' + appName + '/releases?apiToken='
         + secrets.users[username] + '&max_results=25&order=desc', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var returnData = [];
             for(var i = 0; i < contents.releases.length; i++){
@@ -326,7 +325,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var appName = queryArray[4];
        request('https://api.distelli.com/' + secrets.team.username + '/apps/' + appName + '/releases?apiToken='
         + secrets.users[username] + '&max_results=25&order=desc', function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             contents.releases[0].release_version;
             returnData = "Here's the latest release for " + appName + ", " + username + ": " +
@@ -346,18 +345,18 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       var envName = queryArray[4];
       request('https://api.distelli.com/' + secrets.team.username + '/envs/' + envName + '?apiToken='
         + secrets.users[username], function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             var contents = JSON.parse(body);
             var appName = contents.env.app_name;
             request('https://api.distelli.com/' + secrets.team.username + '/apps/' + appName + '?apiToken='
               + secrets.users[username], function (error, response, body) {
-                 if(!error && response.statusCode == 200) {
+                 if(!error && response.statusCode == 200){
                 var appContents = JSON.parse(body);
                 var latestRelease = appContents.app.latest_release.release_version;
                 request.post({headers: {'content-type' : 'application/json'}, url: 'https://api.distelli.com/'
                   + secrets.team.username + '/envs/' + envName + '/deploy' + '?apiToken='+ secrets.users[username] + '',
                   body: JSON.stringify({"release_version": latestRelease, "description": "Deploy via Slack by " + username})}, function (error, response, body) {
-                    if(!error && response.statusCode == 200) {
+                    if(!error && response.statusCode == 200){
                       var releaseContents = JSON.parse(body);
                       returnData ="<" + releaseContents.deployment.html_url + "|" + "Release " + latestRelease + " has been deployed to env " + envName + " " + username + " !" + ">";
                       callback(returnData);
@@ -389,7 +388,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
       request.post({headers: {'content-type' : 'application/json'}, url: 'https://api.distelli.com/'
         + secrets.team.username + '/envs/' + envName + '/deploy' + '?apiToken='+ secrets.users[username] + '',
         body: JSON.stringify({"release_version": releaseNum, "description": "Deploy via Slack by " + username})}, function (error, response, body) {
-          if(!error && response.statusCode == 200) {
+          if(!error && response.statusCode == 200){
             console.log(body);
             var releaseContents = JSON.parse(body);
             returnData = "<" + releaseContents.deployment.html_url + "|" + "Release " + releaseNum + " has been deployed to env " + envName + " " + username + " !" + ">";
@@ -429,6 +428,6 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
 }
 
 app.listen(port, function(){
-  console.log('DistelliSlash is alive on port ' + port + '.');
+  console.log('Distelli-Slash is alive on port ' + port + '.');
 })
 
