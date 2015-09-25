@@ -6,6 +6,6 @@ module.exports = {
   },
   users: {
     //SlackUsername: ApiToken
-    "al": process.env.SLACKTOKEN,
+    al: process.env.SLACKTOKEN,
   }
 }
