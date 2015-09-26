@@ -7,6 +7,7 @@ module.exports = {
   users: {
     //SlackUsername: ApiToken
     "al": process.env.APITOKEN,
-    "rsingh": process.env.APITOKEN
+    "rsingh": process.env.APITOKEN,
+    "boris": process.env.APITOKEN
   }
 }
