@@ -256,7 +256,7 @@ function processQuery(slacktoken, slackteam_id, query, username, callback){
      }
 
      //Create env [envName] for app
-     else if(query.substring(0, 9) === "create env"){
+     else if(query.substring(0, 10) === "create env"){
       var queryArray = query.split(" ");
       var envName = queryArray[2];
       var appName = queryArray[5];
